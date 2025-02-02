@@ -1,6 +1,8 @@
 package Investigate;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,8 +13,8 @@ public class Grep {
         ArrayList<String> targetFiles = GetFiles.getFiles(path);
         for (String kw : keywords){
             KeywordData kwd = new KeywordData(kw, false, new ArrayList<>());
+            Map<String, UseWhereData> fileMap = new HashMap<>();
             for (String fileName : targetFiles) {
-                boolean isFindInFile = false;
                 try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
                     String line;
                     int lineNum = 0;
@@ -22,12 +24,11 @@ public class Grep {
                             if (!kwd.getIsUsed()) {
                                 kwd.setIsUsed(true);
                             }
-                            if (!isFindInFile) {
-                                isFindInFile = true;
-                                UseWhereData useWhereData = new UseWhereData(fileName, new ArrayList<>());
+                            UseWhereData useWhereData = fileMap.computeIfAbsent(fileName, key -> new UseWhereData(key, new ArrayList<>()));
+                            useWhereData.setLine(Integer.toString(lineNum));
+                            if (!kwd.getUseWhereData().contains(useWhereData)) {
                                 kwd.setUseWhereData(useWhereData);
                             }
-                            kwd.getUseWhereData().get(kwd.getUseWhereData().size() - 1).setLine(Integer.toString(lineNum));
                         }
                     }
                 } catch (IOException e) {
