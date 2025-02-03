@@ -4,6 +4,8 @@ import Investigate.UseWhereData;
 
 public class App {
     public static void main(String[] args) {
+        // int countLine = Investigate.CountLine.countLine("./test");
+        // System.out.println("Total Line is " + countLine);
         ArrayList<String> arrX = Investigate.GetFiles.getFiles("./test");
         // for (String x : arrX) {
         //     System.out.println(x);
