@@ -20,7 +20,7 @@ public class Grep {
                     int lineNum = 0;
                     while ((line = reader.readLine()) != null) {
                         lineNum++;
-                        if (line.matches(kw)) {
+                        if (line.contains(kw)) {
                             if (!kwd.getIsUsed()) {
                                 kwd.setIsUsed(true);
                             }
