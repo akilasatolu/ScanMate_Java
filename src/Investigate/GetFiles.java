@@ -14,7 +14,7 @@ public class GetFiles {
             throw new IllegalArgumentException("Invalid directory path: " + path);
         }
         Pattern pattern = (regex == null || regex.isEmpty()) ? null : Pattern.compile(regex);
-        return FormatTxt.formatTxt(getFileList(dir.listFiles(), pattern), "\\", "/");
+        return FormatTxt.formatTxt(getFileList(dir.listFiles(), pattern), "\\\\", "/");
     }
     private static ArrayList<String> getFileList(File[] fileList, Pattern p){
         ArrayList<String> files = new ArrayList<>();

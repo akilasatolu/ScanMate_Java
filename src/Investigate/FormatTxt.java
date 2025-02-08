@@ -9,7 +9,7 @@ public class FormatTxt {
         }
         ArrayList<String> arrY = new ArrayList<>();
         for (String x : arrX) {
-            arrY.add(x.replace(before, after));
+            arrY.add(x.replaceAll(before, after));
         }
         return arrY;
     }
