@@ -8,6 +8,9 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Grep {
+    public static ArrayList<KeywordData> grep(String path, String[] keywords) {
+        return grep(path, ChangeType.toStringList(keywords));
+    }
     public static ArrayList<KeywordData> grep(String path, ArrayList<String> keywords) {
         ArrayList<KeywordData> grepResult = new ArrayList<>();
         ArrayList<String> targetFiles = GetFiles.getFiles(path);
