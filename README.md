@@ -1,1 +1,1 @@
-# ScanMate＿Java
+# ScanMate_Java
